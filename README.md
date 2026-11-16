@@ -76,6 +76,17 @@ powervideo/
   data/              # projetos e exports (gitignored)
 ```
 
+## Vercel (frontend)
+
+Produção: https://powervideo.vercel.app  
+Projeto: Root Directory `apps/web`, framework Next.js.
+
+A UI sobe na Vercel; a API FastAPI/Whisper/FFmpeg **não** roda lá. Em produção, defina `API_ORIGIN` (URL pública do backend) ou use a API local em desenvolvimento.
+
+```bash
+vercel deploy --prod
+```
+
 ## Electron (depois)
 
 Empacote `apps/desktop` como shell fino: sobe a API local e carrega a UI (dev server ou build estático). A API e o schema já são locais e sem auth — encaixe direto.

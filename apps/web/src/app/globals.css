@@ -6,6 +6,8 @@
   --pv-bg: #0e0f12;
   --pv-panel: #16181d;
   --pv-accent: #3d8bfd;
+  --font-display: "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
   color-scheme: dark;
 }
 
