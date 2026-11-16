@@ -1,0 +1,23 @@
+{
+  "name": "powervideo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PowerVideo — CapCut-like NLE (web-first, Electron-ready)",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n web,api -c cyan,magenta \"npm run dev -w @powervideo/web\" \"npm run dev -w @powervideo/api\"",
+    "dev:web": "npm run dev -w @powervideo/web",
+    "dev:api": "npm run dev -w @powervideo/api",
+    "build": "npm run build -w @powervideo/web",
+    "lint": "npm run lint -w @powervideo/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
