@@ -13,10 +13,23 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   if (!res.ok) {
     let detail = res.statusText;
     try {
-      const data = await res.json();
-      detail = data.detail || data.message || JSON.stringify(data);
+      const ct = res.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        const data = await res.json();
+        detail = data.detail || data.message || JSON.stringify(data);
+      } else {
+        const text = (await res.text()).trim();
+        if (text) detail = text.slice(0, 200);
+      }
     } catch {
       /* ignore */
+    }
+    if (
+      typeof detail === "string" &&
+      /unsupported method/i.test(detail)
+    ) {
+      detail =
+        "API FastAPI não está rodando na porta 8000. Inicie: cd apps/api && .venv\\Scripts\\activate && python -m uvicorn app.main:app --reload --port 8000";
     }
     throw new Error(typeof detail === "string" ? detail : "Request failed");
   }

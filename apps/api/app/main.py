@@ -26,6 +26,17 @@ app.include_router(transcribe.router, prefix="/api")
 app.include_router(export.router, prefix="/api")
 
 
+@app.get("/")
+def root():
+    return {
+        "ok": True,
+        "service": "powervideo-api",
+        "docs": "/docs",
+        "health": "/api/health",
+    }
+
+
 @app.get("/api/health")
 def health():
     return {"ok": True, "service": "powervideo-api"}
+
